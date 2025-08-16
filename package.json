@@ -1,0 +1,24 @@
+{
+  "name": "fadalshoping",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 5000",
+    "build": "next build && next export -o out",
+    "start": "next start -p 5000",
+    "postinstall": "npm run build:css",
+    "build:css": "tailwindcss -i ./styles/globals.css -o ./public/tailwind.css --minify"
+  },
+  "dependencies": {
+    "next": "13.5.6",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "stripe": "13.11.0",
+    "mongoose": "7.6.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "10.4.16",
+    "postcss": "8.4.31",
+    "tailwindcss": "3.3.3"
+  }
+}
