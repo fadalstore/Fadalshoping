@@ -1,43 +1,41 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
-
 :root {
   /* Updated color tokens to match InvoicePro design brief */
-  --background: #ffffff; /* Main background color for the interface */
-  --foreground: #1f2937; /* Primary text color for readability */
-  --card: #f1f5f9; /* Background color for cards and sections */
-  --card-foreground: #374151; /* Text color on cards */
-  --popover: #ffffff; /* Background for popover menus */
-  --popover-foreground: #1f2937; /* Text color for popovers */
-  --primary: #1f2937; /* Primary color for buttons and key actions */
-  --primary-foreground: #ffffff; /* Text color for primary buttons */
-  --secondary: #8b5cf6; /* Accent color for highlights and secondary actions */
-  --secondary-foreground: #ffffff; /* Text color for secondary buttons */
-  --muted: #f1f5f9; /* Background for muted sections */
-  --muted-foreground: #6b7280; /* Color for muted text */
-  --accent: #8b5cf6; /* Accent color for interactive elements */
-  --accent-foreground: #ffffff; /* Text color for accent elements */
-  --destructive: #dc2626; /* Color for error messages */
-  --destructive-foreground: #ffffff; /* Text color for destructive actions */
-  --border: #e5e7eb; /* Color for borders and dividers */
-  --input: #f1f5f9; /* Background color for input fields */
-  --ring: rgba(139, 92, 246, 0.5); /* Ring color for focus states */
-  --chart-1: #4f46e5; /* Color for chart elements */
-  --chart-2: #a855f7; /* Color for chart elements */
-  --chart-3: #ec4899; /* Color for chart elements */
-  --chart-4: #fbbf24; /* Color for chart elements */
-  --chart-5: #34d399; /* Color for chart elements */
-  --radius: 0.5rem; /* Rounded corners for buttons and cards */
-  --sidebar: #f1f5f9; /* Background for sidebar */
-  --sidebar-foreground: #1f2937; /* Text color in sidebar */
-  --sidebar-primary: #e5e7eb; /* Background for primary sidebar elements */
-  --sidebar-primary-foreground: #1f2937; /* Text color for primary sidebar elements */
-  --sidebar-accent: #8b5cf6; /* Accent color for sidebar */
-  --sidebar-accent-foreground: #ffffff; /* Text color for sidebar accent */
-  --sidebar-border: #e5e7eb; /* Border color for sidebar */
-  --sidebar-ring: rgba(139, 92, 246, 0.5); /* Ring color for sidebar focus */
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
 }
 
 .dark {
@@ -76,6 +74,7 @@
 }
 
 @theme inline {
+  /* optional: --font-sans, --font-serif, --font-mono if they are applied in the layout.tsx */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -116,9 +115,12 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    border-color: var(--border);
+    outline-color: var(--ring);
   }
   body {
-    @apply bg-background text-foreground;
+    background-color: var(--background);
+    color: var(--foreground);
+    font-feature-settings: "rlig" 1, "calt" 1;
   }
 }

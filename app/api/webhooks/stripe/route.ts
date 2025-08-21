@@ -2,6 +2,10 @@ import { type NextRequest, NextResponse } from "next/server"
 import { createClient } from "@/lib/supabase/server"
 
 export async function POST(request: NextRequest) {
+  if (typeof window === "undefined" && !process.env.VERCEL_ENV && !process.env.NODE_ENV) {
+    return NextResponse.json({ error: "Service temporarily unavailable" }, { status: 503 })
+  }
+
   try {
     if (
       process.env.NODE_ENV === "production" &&
@@ -14,6 +18,9 @@ export async function POST(request: NextRequest) {
     try {
       if (!process.env.STRIPE_SECRET_KEY) {
         throw new Error("STRIPE_SECRET_KEY not configured")
+      }
+      if (typeof require === "undefined") {
+        throw new Error("Runtime environment not ready")
       }
       const Stripe = (await import("stripe")).default
       stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
